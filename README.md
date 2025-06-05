@@ -32,6 +32,38 @@ location = {Virtual Event, USA},
 series = {CHIL '21}
 }
 ```
+## Environment Setup
+To run the code we recommend using a Python virtual environment.
+
+1) Execute the provided script to create the environment and install the dependencies:
+
+```
+bash setup_env.sh
+```
+This installs the packages listed in `requirements.txt`.
+
+2) Activate the environment before running any experiments:
+
+```
+source .venv/bin/activate
+```
+
+### Quickstart with ChatGPT&nbsp;4.1
+If you are new to Python you can use ChatGPT&nbsp;4.1's code execution
+environment to run each command in this README. A typical session
+looks like:
+
+1. Ask ChatGPT to clone the repository and change into the project directory.
+2. Run the steps above to create and activate the virtual environment.
+3. Follow the instructions in the remaining sections (pre-processing
+   the datasets and running the models), copying each command into the
+   ChatGPT console.
+4. If you hit an error, describe it in ChatGPT and it can suggest how
+   to fix it.
+
+This approach gives beginners a guided way to execute the full research
+project step by step.
+
 
 ## Motivation
 The pressure of ever-increasing patient demand and budget restrictions make hospital bed management a daily challenge for clinical staff. Most critical is the efficient allocation of resource-heavy Intensive Care Unit (ICU) beds to the patients who need life support. Central to solving this problem is knowing for how long the current set of ICU patients are likely to stay in the unit. In this work, we propose a new deep learning model based on the combination of temporal convolution and pointwise (1x1) convolution, to solve the length of stay prediction task on the eICU and MIMIC-IV critical care datasets. The model – which we refer to as Temporal Pointwise Convolution (TPC) – is specifically designed to mitigate common challenges with Electronic Health Records, such as skewness, irregular sampling and missing data. In doing so, we have achieved significant performance benefits of 18-68% (metric and dataset dependent) over the commonly used Long-Short Term Memory (LSTM) network, and the multi-head self-attention network known as the Transformer. By adding mortality prediction as a side-task, we can improve performance further still, resulting in a mean absolute deviation of 1.55 days (eICU) and 2.28 days (MIMIC-IV) on predicting remaining length of stay.
