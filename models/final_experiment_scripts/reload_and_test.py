@@ -11,6 +11,7 @@ if __name__=='__main__':
     c['dataset'] = 'eICU'
     c['task'] = 'multitask'
     c = best_lstm(c)
+    c['mode'] = 'test'
 
     log_folder_path = 'models/experiments/final/{}/{}/{}'.format(c['dataset'], c['task'], c['exp_name'])
     sub_directories = next(os.walk(log_folder_path))[1]
@@ -22,4 +23,4 @@ if __name__=='__main__':
                                      base_dir=log_folder_path,
                                      explogger_kwargs={'folder_format': '%Y-%m-%d_%H%M%S{run_number}'},
                                      resume='{}/{}'.format(log_folder_path, sub_dir))
-        baseline_lstm.run_test()
+        baseline_lstm.run()
