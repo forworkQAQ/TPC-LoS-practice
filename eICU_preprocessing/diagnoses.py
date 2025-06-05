@@ -51,7 +51,7 @@ def add_codes(splits, codes_dict, words_dict, count):
             codes.append(count)
             words_dict[count] = splits[0] + '|' + splits[1] + '|' + splits[2] + '|' + splits[3] + '|' + splits[4]
             count += 1
-    if levels is 6:
+    if levels == 6:
         try:
             codes.append(codes_dict[splits[0]][1][splits[1]][1][splits[2]][1][splits[3]][1][splits[4]][1][splits[5]][0])
             codes_dict[splits[0]][1][splits[1]][1][splits[2]][1][splits[3]][1][splits[4]][1][splits[5]][2] += 1
@@ -120,7 +120,7 @@ def find_pointless_codes(diag_dict):
     pointless_codes = []
     for key, value in diag_dict.items():
         # if there is only one child, then the branch is linear and can be condensed
-        if value[2] is 1:
+        if value[2] == 1:
             pointless_codes.append(value[0])
         # get rid of repeat copies where the parent and child are the same title
         for next_key, next_value in value[1].items():
