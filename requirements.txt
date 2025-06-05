@@ -6,3 +6,4 @@ trixi==0.1.2.2
 scikit-learn==0.20.2
 captum==0.2.0
 shap==0.35.0
+pytest>=7.0
