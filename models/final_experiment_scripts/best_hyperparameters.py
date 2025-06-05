@@ -34,7 +34,7 @@ def best_tpc(c):
         c['point_sizes'] = [13] * 9
     elif c['dataset'] == 'MIMIC':
         c['no_diag'] = True
-        c['n_epochs'] = 10 if c['task'] is not 'mortality' else 6
+        c['n_epochs'] = 10 if c['task'] != 'mortality' else 6
         c['batch_size'] = 8
         c['batch_size_test'] = 8  # purely to keep experiment size small so I can run many in parallel
         c['n_layers'] = 8
