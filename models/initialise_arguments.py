@@ -37,9 +37,11 @@ def initialise_arguments():
     parser.add_argument('--L2_regularisation', default=0, type=float)
     parser.add_argument('--last_linear_size', default=17, type=int)
     parser.add_argument('--diagnosis_size', default=64, type=int)
-    parser.add_argument('--batchnorm', default='mybatchnorm', type=str, help='can be: none, pointwiseonly, temponly, '
-                        'default, mybatchnorm or low_momentum. \nfconly, convonly and low_momentum are implemented with '
-                        'mybatchnorm rather than default pytorch')
+    parser.add_argument('--batchnorm', default='mybatchnorm', type=str,
+                        help='can be: none, pointonly, temponly, default, '
+                             'mybatchnorm, or low_momentum. \nlow_momentum is '
+                             'implemented with mybatchnorm rather than '
+                             'default pytorch')
     return parser
 
 def gen_config(parser):
