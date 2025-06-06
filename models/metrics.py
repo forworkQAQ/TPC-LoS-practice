@@ -1,5 +1,63 @@
-from sklearn import metrics
+"""Lightweight metrics helpers.
+
+If scikit-learn is available we rely on it, otherwise we fall back to
+minimal NumPy based implementations. Only the pieces required by the
+tests are implemented for the fallback.
+"""
+
 import numpy as np
+
+try:
+    from sklearn import metrics as sk_metrics  # type: ignore
+except Exception:  # pragma: no cover - sklearn is optional
+    sk_metrics = None
+
+    def _confusion_matrix(y_true, y_pred, labels=None):
+        if labels is None:
+            labels = sorted(set(list(y_true) + list(y_pred)))
+        label_to_idx = {l: i for i, l in enumerate(labels)}
+        cm = np.zeros((len(labels), len(labels)), dtype=int)
+        for t, p in zip(y_true, y_pred):
+            cm[label_to_idx[t], label_to_idx[p]] += 1
+        return cm
+
+    def _cohen_kappa_score(y_true, y_pred, weights="linear"):
+        cm = _confusion_matrix(y_true, y_pred)
+        n = cm.sum()
+        sum0 = cm.sum(axis=0)
+        sum1 = cm.sum(axis=1)
+        expected = np.outer(sum1, sum0) / max(n, 1)
+        if weights == "linear":
+            w = np.abs(np.subtract.outer(np.arange(cm.shape[0]), np.arange(cm.shape[1])))
+        else:
+            w = (np.arange(cm.shape[0])[:, None] != np.arange(cm.shape[1])).astype(int)
+        observed = (w * cm).sum() / max(n, 1)
+        expected = (w * expected).sum() / max(n, 1)
+        return 1 - observed / max(expected, 1e-12)
+
+    def _mean_absolute_error(y_true, y_pred):
+        return float(np.mean(np.abs(np.array(y_true) - np.array(y_pred))))
+
+    def _mean_squared_error(y_true, y_pred):
+        return float(np.mean(np.square(np.array(y_true) - np.array(y_pred))))
+
+    def _r2_score(y_true, y_pred):
+        y_true = np.array(y_true)
+        y_pred = np.array(y_pred)
+        ss_res = np.sum((y_true - y_pred) ** 2)
+        ss_tot = np.sum((y_true - np.mean(y_true)) ** 2)
+        return 1 - ss_res / max(ss_tot, 1e-12)
+
+    class _Metrics:
+        confusion_matrix = staticmethod(_confusion_matrix)
+        cohen_kappa_score = staticmethod(_cohen_kappa_score)
+        mean_absolute_error = staticmethod(_mean_absolute_error)
+        mean_squared_error = staticmethod(_mean_squared_error)
+        r2_score = staticmethod(_r2_score)
+
+    metrics = _Metrics()
+else:  # pragma: no cover - normal path when sklearn is installed
+    metrics = sk_metrics
 
 
 class CustomBins:
