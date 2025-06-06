@@ -1,9 +1,10 @@
-numpy==1.18.1
-pandas==0.24.2
-scipy==1.4.1
-torch==1.5.0
-trixi==0.1.2.2
-scikit-learn==0.20.2
-captum==0.2.0
-shap==0.35.0
+numpy>=2.2
+pandas>=2.3
+scipy>=1.15
+torch>=2.7
+# trixi requires legacy Python and is optional for preprocessing
+# trixi==0.1.2.2
+scikit-learn>=1.7
+captum>=0.8
+shap>=0.47
 pytest>=7.0

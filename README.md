@@ -42,6 +42,11 @@ bash setup_env.sh
 ```
 This installs the packages listed in `requirements.txt`.
 
+The package versions have been updated for **Python 3.11+**. If you
+need GPU support with `torch`, note that installation can be heavy.
+The optional `trixi` dependency is pinned to an old version and may
+require Python 3.8 or earlier.
+
 2) Activate the environment before running any experiments:
 
 ```
