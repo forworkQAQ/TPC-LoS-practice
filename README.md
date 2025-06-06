@@ -237,6 +237,20 @@ TPC | 0.918±0.002 | 0.713±0.007 | 2.28±0.07 | 32.4±1.2 | 42.0±1.2 | 0.19±0
     ```
     python3 -m MIMIC_preprocessing.run_all_preprocessing
     ```
+
+    If you only need a small sample for quick testing, run the
+    timeseries step in `test` mode and then finish the remaining
+    preprocessing manually:
+
+    ```bash
+    python3 -m MIMIC_preprocessing.timeseries      # loads only the first 500k rows
+    python3 -m MIMIC_preprocessing.flat_and_labels
+    python3 - <<'PY'
+from MIMIC_preprocessing.run_all_preprocessing import MIMIC_path
+from eICU_preprocessing.split_train_test import split_train_test
+split_train_test(MIMIC_path, is_test=True, MIMIC=True)
+PY
+    ```
     
    
 ## Running the models
