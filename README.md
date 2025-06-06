@@ -252,6 +252,12 @@ from eICU_preprocessing.split_train_test import split_train_test
 split_train_test(MIMIC_path, is_test=True, MIMIC=True)
 PY
     ```
+
+    Or run the helper script to perform the same steps:
+
+    ```bash
+    python3 quick_mimic4_sample.py
+    ```
     
    
 ## Running the models
