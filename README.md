@@ -45,7 +45,8 @@ This installs the packages listed in `requirements.txt`.
 The package versions have been updated for **Python 3.11+**. If you
 need GPU support with `torch`, note that installation can be heavy.
 The optional `trixi` dependency is pinned to an old version and may
-require Python 3.8 or earlier.
+require Python 3.8 or earlier. `scikit-learn` is also optional and only
+needed for the full metrics implementation.
 
 2) Activate the environment before running any experiments:
 

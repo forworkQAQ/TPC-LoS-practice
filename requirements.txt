@@ -4,7 +4,8 @@ scipy>=1.15
 torch>=2.3
 # trixi requires legacy Python and is optional for preprocessing
 # trixi==0.1.2.2
-scikit-learn>=1.4
+# scikit-learn provides advanced metrics; optional for basic tests
+# scikit-learn>=1.4
 captum>=0.8
 shap>=0.47
 pytest>=7.0
